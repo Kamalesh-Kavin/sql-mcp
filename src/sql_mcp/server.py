@@ -24,6 +24,7 @@ Architecture:
 from __future__ import annotations
 
 import json
+import sys
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from typing import Any, AsyncIterator
@@ -57,12 +58,12 @@ async def lifespan(server: FastMCP) -> AsyncIterator[AppState]:
     in devops-mcp for the Docker client.
     """
     engine = build_engine()
-    print(f"[sql-mcp] engine ready — {engine.url!r}")
+    print(f"[sql-mcp] engine ready — {engine.url!r}", file=sys.stderr)
     try:
         yield AppState(engine=engine)
     finally:
         await engine.dispose()
-        print("[sql-mcp] engine disposed")
+        print("[sql-mcp] engine disposed", file=sys.stderr)
 
 
 # ── server ────────────────────────────────────────────────────────────────────
