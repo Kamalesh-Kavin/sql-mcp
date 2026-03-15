@@ -1,0 +1,18 @@
+[project]
+name = "sql-mcp"
+version = "0.1.0"
+description = "MCP server: natural language to SQL on a live PostgreSQL database"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "asyncpg>=0.31.0",
+    "mcp[cli]>=1.26.0",
+    "python-dotenv>=1.2.2",
+    "sqlalchemy[asyncio]>=2.0.48",
+]
+
+[tool.uv]
+package = true
+
+[project.scripts]
+sql-mcp = "sql_mcp.server:main"
